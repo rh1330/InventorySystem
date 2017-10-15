@@ -1,5 +1,7 @@
 
 
+import java.text.DecimalFormat;
+
 //contains constructor for generic item in inventory 
 public class Item {
 	int currentIndex = 0;
@@ -18,6 +20,9 @@ public class Item {
 	}
 
 	public Item (String name, int productID, double price, int quantity) {
+
+		//DecimalFormat df = new DecimalFormat("0.00");
+
 		this.name = name;
 		this.productID = productID;
 		this.price = price;
@@ -28,8 +33,17 @@ public class Item {
 	//Item[] inventory = new Item[100];
 
 	public String getName() {
-		String output = "Name: "+name+"   ProductID: "+productID+"   Quantity: "+quantity ;
+
+		DecimalFormat df = new DecimalFormat("#.00");
+		//price = df.format(price);
+
+		String output = "Name: "+name+"   ProductID: "+productID+"   Quantity: "+quantity+"   Price per Unit: $"+df.format(price) ;
 		return output;
+	}
+
+	public double getValue () {
+		double value = quantity * price;
+		return value;
 	}
 
 

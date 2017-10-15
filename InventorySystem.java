@@ -15,7 +15,7 @@ public class InventorySystem {
 	
 
 
-	/*TESTING - REMOVE LATER
+	/*TE
 
 	//addItem(0);
 	Item item1 = new Item();
@@ -35,10 +35,23 @@ public class InventorySystem {
 		currentIndex++;
 	}
 
+	//remove last item
 	public void removeItem () {
 		this.inventory[currentIndex] = null;
 		currentIndex--;
 
+	}
+
+	//remove item by search
+
+	//check if inventory is empty 
+
+	public boolean isEmpty() {
+		if (currentIndex > 0)
+			return false;
+		else
+			return true;
+			
 	}
 
 	public String toString () {
