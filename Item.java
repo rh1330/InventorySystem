@@ -46,5 +46,14 @@ public class Item {
 		return value;
 	}
 
+	public int getQuantity () {
+		return quantity;
+	}	
+
+	// change quantity 
+	public void setQuantity (int NewQuant) {
+		this.quantity = NewQuant;
+	}
+
 
 }

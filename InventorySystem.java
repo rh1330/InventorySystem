@@ -42,6 +42,33 @@ public class InventorySystem {
 
 	}
 
+	public void modifyItem(int index, int quantity) {
+		// get quantity.  Subtract quantity and set new quantity.  				
+		int original = this.inventory[index-1].getQuantity();
+		int newQuantity = original - quantity;
+
+		//send error message is user attempts to deduct more than available quantity 
+		if (newQuantity < 0) {
+			System.out.println("Error!  Pick a valid quantity.\n");
+		}		
+		//set new quanity 
+		else if (newQuantity > 0) {
+			this.inventory[index-1].setQuantity(newQuantity); 
+			System.out.println("Quantity removed. \n");
+		}
+		//remove item from inventory array
+		else {
+			this.inventory[index-1] = null;
+			System.out.println("Item(s) removed from inventory. \n");
+
+			for (int i = index-1; i< currentIndex+1; i++) {
+				inventory[i] = inventory[i+1];
+			}
+
+		}
+
+	}
+
 	//remove item by search
 
 	//check if inventory is empty 
@@ -56,10 +83,18 @@ public class InventorySystem {
 
 	public String toString () {
 		String msg = "";
+		double currentValue = 0;
+
 		for (int i =0; i < currentIndex; i++) {
-			msg = msg + "item #"+(i+1)+" "+inventory[i].getName()+"\n";
+			//currentValue += inventory[i].getValue();
+			if (inventory[i] != null)
+				msg = msg + "Item #"+(i+1)+" "+inventory[i].getName()+"\n";
+
+			//msg = msg + "Total value of items in inventory:  $"+showValue
 		}
+		//msg = msg + "The total value of all items in inventory:  $"+currentValue+".\n";
 		return msg;
 	}
+
 
 }

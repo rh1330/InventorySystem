@@ -13,6 +13,8 @@ public class TestSystem {
 		int input = 0;
 		boolean programmingRunning = true;
 
+		int selectItem = 0;
+		int removeQuant = 0;
 
 		while (programmingRunning) {
 
@@ -24,7 +26,8 @@ public class TestSystem {
 
 			input = sc.nextInt();
 			
-
+			//Adding items to inventory
+			//add to existing inventory or new inventory
 			if (input == 1) {
 				System.out.println("Enter item name:\n");
 				sc.nextLine();
@@ -50,15 +53,34 @@ public class TestSystem {
 				
 
 				sys.addItem(new Item(newName, newProductID, newPrice, newQuantity));
-			} 
+			}
+
+			//Removing items from inventory
 			else if (input == 2) {
 				//removes last item in inventory
 				if(sys.isEmpty()) {
 					System.out.println("Inventory is currently empty.  No items to remove.\n");
 				}
 				else {
-					sys.removeItem();}
+					//sys.removeItem();}
+
+					System.out.println("Which item are you removing?\n");
+					System.out.println(sys.toString()); 
+					System.out.println("Select item number:  "); 	
+					selectItem = sc.nextInt(); //select item number
+					//get quantity -- cannot exceed quantity number and cannot be 0
+					do {
+						System.out.println("Select a valid quantity to be removed:  ");
+						removeQuant = sc.nextInt(); 
+					}while(removeQuant == 0);
+					
+
+					sys.modifyItem(selectItem, removeQuant);
+
+				}
 			}
+
+			//Viewing inventory
 			else if (input == 3) {
 				if (sys.isEmpty()) {
 					System.out.println("Inventory is currently empty.  \n");
@@ -67,6 +89,7 @@ public class TestSystem {
 				System.out.println(sys.toString()); 
 				}
 			}
+
 			else {
 				programmingRunning = false;
 			}
